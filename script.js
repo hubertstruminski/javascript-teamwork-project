@@ -1,96 +1,137 @@
-window.onload = function(){
-	drawRoad();
+var myGamePiece;
+
+function startGame(){
+	myGamePiece = new Component(150, 150);
+	myGameArea.start();
 }
 
+var myGameArea = {
+	canvas: document.createElement("canvas"),
+	start: function(){
+		this.canvas.width = window.innerWidth;
+		this.canvas.height = window.innerHeight;
+		this.context = this.canvas.getContext("2d");
+		document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+		this.frameNo = 0;
+		this.interval = setInterval(updateGameArea, 20);
+	},
+	createBoard: function(){
+		//outside line
+		this.context.beginPath();
+		this.context.moveTo(100, 100);
+		this.context.lineTo(1000, 100);
+		this.context.strokeStyle = "red";
+		this.context.arc(1150, 200, 100, 1.5 * Math.PI, 0 * Math.PI);
+		this.context.lineTo(1250, 300);
+		this.context.lineTo(1400, 500);
+		this.context.lineTo(1400, 700);
+		this.context.lineTo(900, 700);
+		this.context.lineTo(750, 500);
+		this.context.lineTo(500, 500);
+		this.context.lineTo(350, 700);
+		this.context.lineTo(250, 700);
+		this.context.arc(200, 600, 100, 0.5 * Math.PI, 1 * Math.PI);
+		this.context.closePath();
+		this.context.lineWidth = 5;
+		this.context.fillStyle = "#9d9ea0";
+		this.context.fill(); 
+		this.context.stroke();
 
-function drawRoad(){
-	var canvas = document.getElementById("game");
-	canvas.setAttribute("width", window.innerWidth);
-	canvas.setAttribute("height", window.innerHeight);
+		//insideline
+		this.context.beginPath();
+		this.context.moveTo(200, 200);
+		this.context.lineTo(850, 200);
+		this.context.arc(1000, 300, 100, 1.5 * Math.PI, 0 * Math.PI);
+		this.context.lineTo(1250, 500);
+		this.context.lineTo(1250, 550);
+		this.context.arc(1200, 550, 50, 0 * Math.PI, 0.5 * Math.PI);
+		this.context.lineTo(1000, 600);
+		this.context.lineTo(850, 400);
+		this.context.lineTo(425, 400);
+		this.context.lineTo(275, 575);
+		this.context.lineTo(250, 575);
+		this.context.arc(250, 525, 50, 0.5 * Math.PI, 1 * Math.PI);
+		this.context.closePath();
+		this.context.lineWidth = 5;
+		this.context.fillStyle = "green";
+		this.context.fill(); 
+		this.context.stroke();
+		},
+	stop: function(){
+		clearInterval(this.interval);
+	},
+	clear: function(){
+		//outside line
+		this.context.beginPath();
+		this.context.moveTo(100, 100);
+		this.context.lineTo(1000, 100);
+		this.context.strokeStyle = "black";
+		this.context.arc(1150, 200, 100, 1.5 * Math.PI, 0 * Math.PI);
+		this.context.lineTo(1250, 300);
+		this.context.lineTo(1400, 500);
+		this.context.lineTo(1400, 700);
+		this.context.lineTo(900, 700);
+		this.context.lineTo(750, 500);
+		this.context.lineTo(500, 500);
+		this.context.lineTo(350, 700);
+		this.context.lineTo(250, 700);
+		this.context.arc(200, 600, 100, 0.5 * Math.PI, 1 * Math.PI);
+		this.context.closePath();
+		this.context.lineWidth = 5;
+		this.context.fillStyle = "#9d9ea0";
+		this.context.fill(); 
+		this.context.stroke();
 
-	var ctx = canvas.getContext("2d");
+		//insideline
+		this.context.beginPath();
+		this.context.moveTo(200, 200);
+		this.context.lineTo(850, 200);
+		this.context.arc(1000, 300, 100, 1.5 * Math.PI, 0 * Math.PI);
+		this.context.lineTo(1250, 500);
+		this.context.lineTo(1250, 550);
+		this.context.arc(1200, 550, 50, 0 * Math.PI, 0.5 * Math.PI);
+		this.context.lineTo(1000, 600);
+		this.context.lineTo(850, 400);
+		this.context.lineTo(425, 400);
+		this.context.lineTo(275, 575);
+		this.context.lineTo(250, 575);
+		this.context.arc(250, 525, 50, 0.5 * Math.PI, 1 * Math.PI);
+		this.context.closePath();
+		this.context.lineWidth = 5;
+		this.context.fillStyle = "green";
+		this.context.fill(); 
+		this.context.stroke();
+	}
+	
+}
 
-	//outside line
-	ctx.beginPath();
-	ctx.moveTo(100, 100);
-	ctx.lineTo(1000, 100);
-	ctx.arc(1150, 200, 100, 1.5 * Math.PI, 0 * Math.PI);
-	ctx.lineTo(1250, 300);
-	ctx.lineTo(1400, 500);
-	ctx.lineTo(1400, 700);
-	ctx.lineTo(900, 700);
-	ctx.lineTo(750, 500);
-	ctx.lineTo(500, 500);
-	ctx.lineTo(350, 700);
-	ctx.lineTo(250, 700);
-	ctx.arc(200, 600, 100, 0.5 * Math.PI, 1 * Math.PI);
-	ctx.closePath();
-	ctx.lineWidth = 5;
-	ctx.fillStyle = "#9d9ea0";
-	ctx.fill(); 
-	ctx.stroke();
+function Component(x, y){
 
-	//insideline
-	ctx.beginPath();
-	ctx.moveTo(200, 200);
-	ctx.lineTo(850, 200);
-	ctx.arc(1000, 300, 100, 1.5 * Math.PI, 0 * Math.PI);
-	ctx.lineTo(1250, 500);
-	ctx.lineTo(1250, 550);
-	ctx.arc(1200, 550, 50, 0 * Math.PI, 0.5 * Math.PI);
-	ctx.lineTo(1000, 600);
-	ctx.lineTo(850, 400);
-	ctx.lineTo(425, 400);
-	ctx.lineTo(275, 575);
-	ctx.lineTo(250, 575);
-	ctx.arc(250, 525, 50, 0.5 * Math.PI, 1 * Math.PI);
-	ctx.closePath();
-	ctx.lineWidth = 5;
-	ctx.fillStyle = "green";
-	ctx.fill(); 
-	ctx.stroke();
+	car = new Image();
+	car.src = "car1.png";
 
-	// var img = document.getElementById("tribune");
-    img1 = new Image();
-    img1.src = "trybuna.png";
-    img1.addEventListener("load", function(){
-    	ctx.drawImage(img1, 485, 350);
-    }, false);
+	this.animate = function(){
+	  myGameArea.context.drawImage(car, x, y); 
+	  x++;
+	  if (x > 250) requestAnimationFrame(this.animate.bind(this))
+	}
 
-    img2 = new Image();
-    img2.src = "tree.png";
-    img2.addEventListener("load", function(){
-    	ctx.drawImage(img2, window.innerWidth - 125, window.innerHeight - 150);
-    }, false);
+	this.speed = 1;
+	this.x = x;
+	this.y = y;
 
-    img3 = new Image();
-    img3.src = "treeSet.png";
-    img3.addEventListener("load", function(){
-    	ctx.drawImage(img3, window.innerWidth - 250, window.innerHeight - 600);
-    }, false);
+	this.update = function(){
+		ctx = myGameArea.context;
+	}
+	this.newPos = function(){
+		this.x += this.speed;
+        this.y -= this.speed;
+	}
+}
 
-    img4 = new Image();
-    img4.src = "treeSet.png";
-    img4.addEventListener("load", function(){
-    	ctx.drawImage(img4, window.innerWidth - 1000, window.innerHeight - 200);
-    }, false);
-
-    img5 = new Image();
-    img5.src = "emptyTree.png";
-    img5.addEventListener("load", function(){
-    	ctx.drawImage(img5, window.innerWidth - 150, window.innerHeight - 450);
-    }, false);
-
-    img6 = new Image();
-    img6.src = "tree.png";
-    img6.addEventListener("load", function(){
-    	ctx.drawImage(img6, 200, window.innerHeight - 350);
-    }, false);
-
-    img7 = new Image();
-    img7.src = "krzew.png";
-    img7.addEventListener("load", function(){
-    	ctx.drawImage(img7, window.innerWidth - 550, window.innerHeight - 200);
-    }, false);
-
+function updateGameArea() {
+    myGameArea.clear();
+    myGamePiece.newPos();
+    myGamePiece.animate();
+    myGamePiece.createBoard();
 }

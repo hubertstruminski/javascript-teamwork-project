@@ -6,21 +6,15 @@
 	<title>Car - racing</title>
 
 	<link rel="stylesheet" type="text/css" href="style.css" />
-	<script src="script.js"></script>
-
-	<script>
-		document.addEventListener("DOMContentLoaded", function(event){
-			var game = new Game();
-		});
-	</script>
+	<script src="script.js" async></script>
 	
 </head>
 
-<body>
+<body onload="startGame()">
 	
-	<canvas id="game" width="1450" height="700" style="border: 1px solid #000">
+	<!-- <canvas id="game">
 		Sorry, your browser doesn't support canvas.
-	</canvas>
+	</canvas> -->
 	
 </body>
 </html>
