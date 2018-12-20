@@ -34,6 +34,8 @@ var running = false;
             car.v-=0.001;
          else
             car.v+=0.001;
+
+         console.log(car.v);
         }
     };
 
@@ -54,10 +56,7 @@ var running = false;
             car.v=0;
             car.y=canvas.height-car.carHight-1;
         }
-        console.log(car.x);
-        console.log(canvas.width);
-        console.log();
-        console.log(car.y);
+
     }
 
     function clear(){
@@ -87,7 +86,6 @@ var running = false;
         car.radius-=0.1;
         if(car.radius<0)
             car.radius=2*Math.PI;
-        console.log(car.radius);
 
 
     }
@@ -97,7 +95,6 @@ var running = false;
         car.radius+=0.1;
         if(car.radius>2*Math.PI)
             car.radius=0;
-        console.log(car.radius);
 
     }
 
