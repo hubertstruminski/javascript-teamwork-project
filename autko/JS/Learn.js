@@ -1,6 +1,7 @@
 canvas = document.getElementById("learn");
 const ctx = canvas.getContext('2d');
 let raf;
+let speed;
 const running = false;
 const circle = new Path2D();
 const brickColumn = 1;
@@ -9,7 +10,8 @@ const brickWidth = 30;
 const brickHeight = 30;
 let interval;
 let counter = 0;
-
+ctx.font = "30px Arial";
+ctx.fillStyle = "red";
 
 let car = {
     x: 264,
@@ -44,10 +46,24 @@ let car = {
         else {
             car.v += 0.002;
         }
-        console.log(car.v*30+"km/h");
+
 
     }
 };
+
+function showSpeed(){
+    speed=car.v;
+     ctx.fillText("SPEED: "+Math.round(speed*35)+" KM/H", canvas.width-280, 50);
+
+
+}
+
+function refresh(){
+    car.draw();
+    showSpeed();
+
+}
+
 function colisionMap() {
     if (car.x < 0) {
         car.v = 0;
@@ -57,10 +73,10 @@ function colisionMap() {
         car.v = 0;
         car.y = 1;
     }
-    if (car.x > canvas.width - car.carWidth) {
-        car.v = 0;
-        car.x = canvas.width - car.carWidth - 1;
-    }
+//    if (car.x > canvas.width - car.carWidth) {
+//        car.v = 0;
+//        car.x = canvas.width - car.carWidth - 1;
+//    }
     if (car.y > canvas.height - car.carHight) {
         car.v = 0;
         car.y = canvas.height - car.carHight - 1;
@@ -165,7 +181,6 @@ function fillBricks(brickX, brickY, r, c) {
     bricks[r][c].y = brickY;
     ctx.beginPath();
     ctx.rect(brickX, brickY, brickWidth, brickHeight);
-    ctx.fillStyle = "#0095DD";
     ctx.fill();
     ctx.closePath();
 }
@@ -227,9 +242,10 @@ function drawBricks() {
 }
 
 
-setInterval(car.draw, 10);
+setInterval(refresh, 10);
 
 
 car.draw();
+ctx.font = "30px Arial";
 
 //document.body.addEventListener("load", car.draw(),true);
