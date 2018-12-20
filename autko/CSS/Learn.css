@@ -20,3 +20,15 @@ cursor: none;
     font-weight: bold;
     color: red;
   }
+  div{
+    width:30px;
+    height:30px;
+    background-color: black;
+    margin: 5px;
+    float: left;
+    color: white;
+    text-align: center;
+    line-height:30px;
+    border: 2px solid black;
+
+}

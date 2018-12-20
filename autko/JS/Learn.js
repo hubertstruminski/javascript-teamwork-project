@@ -148,16 +148,26 @@ function collisionDetection() {
         for (let c = 0; c < brickColumn; c++) {
             let b = bricks[r][c];
             if (b.status == 1) {
-                if (car.x > b.x && car.x < b.x + brickWidth && car.y > b.y && car.y < b.y + brickHeight) {
+                if (car.x + car.carWidth > b.x && car.x < b.x + brickWidth && car.y + car.carHight > b.y && car.y < b.y + brickHeight) {
                     b.status = 0;
                     counter++;
                     console.log(counter);
+                    // const div = document.createElement('div');
+                    // document.body.appendChild(div);
                 }
             }
         }
     }
 }
-
+function fillBricks(brickX, brickY, r, c) {
+    bricks[r][c].x = brickX;
+    bricks[r][c].y = brickY;
+    ctx.beginPath();
+    ctx.rect(brickX, brickY, brickWidth, brickHeight);
+    ctx.fillStyle = "#0095DD";
+    ctx.fill();
+    ctx.closePath();
+}
 
 
 function drawBricks() {
@@ -165,59 +175,29 @@ function drawBricks() {
         for (let c = 0; c < brickColumn; c++) {
             if (bricks[r][c].status == 1) {
                 if (r == 0) {
-                    let brickX = 20;
+                    let brickX = 300;
                     let brickY = 440;
-                    bricks[r][c].x = brickX;
-                    bricks[r][c].y = brickY;
-                    ctx.beginPath();
-                    ctx.rect(brickX, brickY, brickWidth, brickHeight);
-                    ctx.fillStyle = "#0095DD";
-                    ctx.fill();
-                    ctx.closePath();
+                    fillBricks(brickX, brickY, r, c);
                 }
                 if (r == 1) {
-                    let brickX = 20;
+                    let brickX = 200;
                     let brickY = 150;
-                    bricks[r][c].x = brickX;
-                    bricks[r][c].y = brickY;
-                    ctx.beginPath();
-                    ctx.rect(brickX, brickY, brickWidth, brickHeight);
-                    ctx.fillStyle = "#0095DD";
-                    ctx.fill();
-                    ctx.closePath();
+                    fillBricks(brickX, brickY, r, c);
                 }
                 if (r == 2) {
-                    let brickX = 20;
+                    let brickX = 200;
                     let brickY = 250;
-                    bricks[r][c].x = brickX;
-                    bricks[r][c].y = brickY;
-                    ctx.beginPath();
-                    ctx.rect(brickX, brickY, brickWidth, brickHeight);
-                    ctx.fillStyle = "#0095DD";
-                    ctx.fill();
-                    ctx.closePath();
+                    fillBricks(brickX, brickY, r, c);
                 }
                 if (r == 3) {
                     let brickX = 120;
                     let brickY = 50;
-                    bricks[r][c].x = 120;
-                    bricks[r][c].y = 50;
-                    ctx.beginPath();
-                    ctx.rect(brickX, brickY, brickWidth, brickHeight);
-                    ctx.fillStyle = "#0095DD";
-                    ctx.fill();
-                    ctx.closePath();
+                    fillBricks(brickX, brickY, r, c);
                 }
                 if (r == 4) {
                     let brickX = 320;
                     let brickY = 50;
-                    bricks[r][c].x = brickX;
-                    bricks[r][c].y = brickY;
-                    ctx.beginPath();
-                    ctx.rect(brickX, brickY, brickWidth, brickHeight);
-                    ctx.fillStyle = "#0095DD";
-                    ctx.fill();
-                    ctx.closePath();
+                    fillBricks(brickX, brickY, r, c);
                 }
             }
         }
