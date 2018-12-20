@@ -61,7 +61,7 @@ function showSpeed() {
     speed = car.v;
     ctx.fillText("SPEED: " + Math.round(speed * 35) + " KM/H", canvas.width - 280, 50);
     ctx.fillText("LAP: "+lap+"/5", canvas.width - 280, 100);
-    if(counter<5 && counter>=1){
+    if(counter<40 && counter>=1){
     ctx.fillText("TIME: "+(d2-d)/1000+"s",canvas.width - 280,150);
         d2 = Math.round(performance.now());
     }
@@ -69,7 +69,7 @@ function showSpeed() {
 
 function endGame(){
 
-    if(counter>=5){
+    if(counter>=40){
         window.removeEventListener('keydown', keyIsDown,false );
         ctx.fillText("TIME: "+(d2-d)/1000+"s",600,450);
     }
