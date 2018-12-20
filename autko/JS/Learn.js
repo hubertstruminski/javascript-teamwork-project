@@ -21,7 +21,8 @@ let car = {
     draw: function () {
         clear();
         colisionMap();
-        view = new Image(); if (car.radius < Math.PI / 4 && car.radius >= 0 || car.radius > (7 * Math.PI) / 4) {
+        view = new Image();
+        if (car.radius < Math.PI / 4 && car.radius >= 0 || car.radius > (7 * Math.PI) / 4) {
             view.src = "../JPG/car.png";
         }
         else if (car.radius < (3 * Math.PI) / 4 && car.radius > (Math.PI) / 4) {
@@ -161,13 +162,11 @@ function collisionDetection() {
     }
 }
 function fillBricks(brickX, brickY, r, c) {
+    view = new Image();
+    view.src = "../JPG/santaHat.png";
+    ctx.drawImage(view, brickX, brickY, brickHeight, brickWidth);
     bricks[r][c].x = brickX;
     bricks[r][c].y = brickY;
-    ctx.beginPath();
-    ctx.rect(brickX, brickY, brickWidth, brickHeight);
-    ctx.fillStyle = "#0095DD";
-    ctx.fill();
-    ctx.closePath();
 }
 
 
