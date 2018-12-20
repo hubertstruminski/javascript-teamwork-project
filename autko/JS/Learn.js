@@ -5,11 +5,8 @@ const running = false;
 const circle = new Path2D();
 const brickColumn = 1;
 const brickRow = 5;
-const brickWidth = 75;
+const brickWidth = 20;
 const brickHeight = 20;
-const brickPadding = 52;
-const brickOffsetTop = 50;
-const brickOffsetLeft = 20;
 let interval;
 let counter = 0;
 
@@ -18,11 +15,24 @@ let car = {
     y: 0,
     radius: 0,
     v: 0,
+    carHight: 50,
+    carWidth: 50,
     draw: function () {
         clear();
-        view = new Image();
-        view.src = "../JPG/car.png";
-        ctx.drawImage(view, car.x + car.v * Math.pow((Math.cos(car.radius / 360)), 2), car.y + car.v * Math.pow((Math.sin(car.radius / 360)), 2), 50, 50);
+        colisionMap();
+        view = new Image(); if (car.radius < Math.PI / 4 && car.radius >= 0 || car.radius > (7 * Math.PI) / 4) {
+            view.src = "../JPG/car.png";
+        }
+        else if (car.radius < (3 * Math.PI) / 4 && car.radius > (Math.PI) / 4) {
+            view.src = "../JPG/carDown.png";
+        }
+        else if (car.radius < (5 * Math.PI) / 4 && car.radius > (3 * Math.PI) / 4) {
+            view.src = "../JPG/carLeft.png";
+        }
+        else if (car.radius < (7 * Math.PI) / 4 && car.radius > (5 * Math.PI) / 4) {
+            view.src = "../JPG/carUp.png";
+        }
+        ctx.drawImage(view, car.x + car.v * Math.pow((Math.cos(car.radius / 360)), 2), car.y + car.v * Math.pow((Math.sin(car.radius / 360)), 2), car.carHight, car.carWidth);
         car.x = car.x + car.v * (Math.cos(car.radius));
         car.y = car.y + car.v * (Math.sin(car.radius));
         drawBricks();
@@ -37,6 +47,24 @@ let car = {
 
     }
 };
+function colisionMap() {
+    if (car.x < 0) {
+        car.v = 0;
+        car.x = 1;
+    }
+    if (car.y < 0) {
+        car.v = 0;
+        car.y = 1;
+    }
+    if (car.x > canvas.width - car.carWidth) {
+        car.v = 0;
+        car.x = canvas.width - car.carWidth - 1;
+    }
+    if (car.y > canvas.height - car.carHight) {
+        car.v = 0;
+        car.y = canvas.height - car.carHight - 1;
+    }
+}
 
 function clear() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -62,16 +90,17 @@ function speedDown() {
 }
 function turnLeft() {
     car.radius -= 0.1;
-    if (car.radius < -360) {
-        car.radius = 360;
+    if (car.radius < 0) {
+        car.radius = 2 * Math.PI;
+
     }
 
 }
 
 function turnRight() {
     car.radius += 0.1;
-    if (car.radius > 359) {
-        car.radius = -359;
+    if (car.radius > 2 * Math.PI) {
+        car.radius = 0;
     }
 }
 
@@ -129,28 +158,67 @@ function collisionDetection() {
     }
 }
 
-// function drawBricks() {
 
-//     ctx.beginPath();
-//     ctx.rect(20, 40, brickWidth, brickHeight);
-//     ctx.fillStyle = "#0095DD";
-//     ctx.fill();
-//     ctx.closePath();
-// }
 
 function drawBricks() {
     for (let r = 0; r < brickRow; r++) {
         for (let c = 0; c < brickColumn; c++) {
             if (bricks[r][c].status == 1) {
-                let brickX = (c * (brickWidth + brickPadding)) + brickOffsetLeft;
-                let brickY = (r * (brickHeight + brickPadding)) + brickOffsetTop;
-                bricks[r][c].x = brickX;
-                bricks[r][c].y = brickY;
-                ctx.beginPath();
-                ctx.rect(brickX, brickY, brickWidth, brickHeight);
-                ctx.fillStyle = "#0095DD";
-                ctx.fill();
-                ctx.closePath();
+                if (r == 0) {
+                    let brickX = 20;
+                    let brickY = 440;
+                    bricks[r][c].x = brickX;
+                    bricks[r][c].y = brickY;
+                    ctx.beginPath();
+                    ctx.rect(brickX, brickY, brickWidth, brickHeight);
+                    ctx.fillStyle = "#0095DD";
+                    ctx.fill();
+                    ctx.closePath();
+                }
+                if (r == 1) {
+                    let brickX = 20;
+                    let brickY = 150;
+                    bricks[r][c].x = brickX;
+                    bricks[r][c].y = brickY;
+                    ctx.beginPath();
+                    ctx.rect(brickX, brickY, brickWidth, brickHeight);
+                    ctx.fillStyle = "#0095DD";
+                    ctx.fill();
+                    ctx.closePath();
+                }
+                if (r == 2) {
+                    let brickX = 20;
+                    let brickY = 250;
+                    bricks[r][c].x = brickX;
+                    bricks[r][c].y = brickY;
+                    ctx.beginPath();
+                    ctx.rect(brickX, brickY, brickWidth, brickHeight);
+                    ctx.fillStyle = "#0095DD";
+                    ctx.fill();
+                    ctx.closePath();
+                }
+                if (r == 3) {
+                    let brickX = 120;
+                    let brickY = 50;
+                    bricks[r][c].x = 120;
+                    bricks[r][c].y = 50;
+                    ctx.beginPath();
+                    ctx.rect(brickX, brickY, brickWidth, brickHeight);
+                    ctx.fillStyle = "#0095DD";
+                    ctx.fill();
+                    ctx.closePath();
+                }
+                if (r == 4) {
+                    let brickX = 320;
+                    let brickY = 50;
+                    bricks[r][c].x = brickX;
+                    bricks[r][c].y = brickY;
+                    ctx.beginPath();
+                    ctx.rect(brickX, brickY, brickWidth, brickHeight);
+                    ctx.fillStyle = "#0095DD";
+                    ctx.fill();
+                    ctx.closePath();
+                }
             }
         }
     }
