@@ -1,42 +1,80 @@
-body{
-    background-color : white;
+body
+{
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;   
 }
-canvas{
-background-image: url("../JPG/background.jpg");
-background-size: 100% 100%;
-background-repeat: no-repeat;
-border: 2px solid black;
-cursor: none;
+canvas
+{
+    background-image: url("../JPG/background.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    cursor: none;
+    width: 75%;
+    height: 84.75%;
+    float: left;
 }
-header{
+header
+{
     width: 100%;
     height: 15%;
-    background: red;
+    background-image: url("../JPG/prism.png");
 }
-.game-over-notify {
-    position: fixed;
-    display: none;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.5);
-    align-items: center;
-    justify-content: center;
-    font-family: sans-serif;
-    font-size: 40px;
-    font-weight: bold;
-    color: red;
-  }
-  div{
-    width:30px;
-    height:30px;
-    background-color: black;
-    margin: 5px;
+article
+{
+    width: 25%;
+    height: 84.75%;
+    background-image: url("../JPG/prism.png");
     float: left;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+    font-size: 0.85vw;
+}
+th, td
+{
+  padding: 10%;
+  text-align: center;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2
+}
+tr:nth-child(odd){
+  background-color: #b2b5ba;
+}
+article h3
+{
     color: white;
     text-align: center;
-    line-height:30px;
-    border: 2px solid black;
+    font-size: 3.5vw;
+    margin-top: 30%;
+    word-spacing: 6%;
 
+}
+ul
+{
+    display: inline-block;
+    width: 100%;
+    color: white;
+    margin-left: 12.5%;
+}
+ul > li
+{
+    width: 30%;
+    color: white;
+    float: left;
+    font-size: 2vw;
+    line-height: 325%;
+}
+input[type="submit"]
+{
+    width: 30%;
+    font-size: 1.7vw;
+    line-height: 150%;
+    border-radius: 120px;
 }
