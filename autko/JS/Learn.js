@@ -39,12 +39,12 @@ let car = {
         drawBricks();
         collisionDetection();
         if (car.v > 0) {
-            car.v -= 0.001;
+            car.v -= 0.002;
         }
         else {
-            car.v += 0.001;
+            car.v += 0.002;
         }
-
+        console.log(car.v*30+"km/h");
 
     }
 };
@@ -73,15 +73,15 @@ function clear() {
 
 function speedUp() {
     if (car.v < 0) {
-        car.v += 0.035;
+        car.v += 0.12;
     }
     else {
-        car.v += 0.02;
+        car.v += 0.04;
     }
 }
 function speedDown() {
     if (car.v > 0) {
-        car.v -= 0.035;
+        car.v -= 0.07;
     }
     else {
         car.v -= 0.02;
@@ -107,6 +107,7 @@ function turnRight() {
 
 
 window.addEventListener('keydown', function (e) {
+
 
     if (e.keyCode == 38) {
         speedUp();
@@ -152,7 +153,6 @@ function collisionDetection() {
                 if (car.x + car.carWidth > b.x && car.x < b.x + brickWidth && car.y + car.carHight > b.y && car.y < b.y + brickHeight) {
                     b.status = 0;
                     counter++;
-                    console.log(counter);
                     // const div = document.createElement('div');
                     // document.body.appendChild(div);
                 }
