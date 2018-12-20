@@ -9,6 +9,7 @@ const brickWidth = 30;
 const brickHeight = 30;
 let interval;
 let counter = 0;
+let lap = 1;
 
 
 let car = {
@@ -153,10 +154,16 @@ function collisionDetection() {
                 if (car.x + car.carWidth > b.x && car.x < b.x + brickWidth && car.y + car.carHight > b.y && car.y < b.y + brickHeight) {
                     b.status = 0;
                     counter++;
-                    console.log(counter);
-                    // const div = document.createElement('div');
-                    // document.body.appendChild(div);
+                    if (counter % 9 == 0) {
+                        lap++
+                        console.log(lap);
+                    }
+                    // console.log(counter);
+
                 }
+            }
+            if (counter % 9 == 0) {
+                b.status = 1;
             }
         }
     }
