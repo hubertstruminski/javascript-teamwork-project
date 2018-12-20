@@ -11,6 +11,9 @@ const brickHeight = 30;
 let interval;
 let counter = 0;
 let lap = 1;
+let d = 0;
+let d2 = 0;
+let lapsAreLowerThanFive = true;
 
 ctx.font = "30px Arial";
 ctx.fillStyle = "red";
@@ -57,6 +60,19 @@ let car = {
 function showSpeed() {
     speed = car.v;
     ctx.fillText("SPEED: " + Math.round(speed * 35) + " KM/H", canvas.width - 280, 50);
+    ctx.fillText("LAP: "+lap+"/5", canvas.width - 280, 100);
+    if(counter<5 && counter>=1){
+    ctx.fillText("TIME: "+(d2-d)/1000+"s",canvas.width - 280,150);
+        d2 = Math.round(performance.now());
+    }
+}
+
+function endGame(){
+
+    if(counter>=5){
+        window.removeEventListener('keydown', keyIsDown,false );
+        ctx.fillText("TIME: "+(d2-d)/1000+"s",600,450);
+    }
 
 
 }
@@ -64,6 +80,7 @@ function showSpeed() {
 function refresh() {
     car.draw();
     showSpeed();
+    endGame();
 
 }
 
@@ -76,10 +93,10 @@ function colisionMap() {
         car.v = 0;
         car.y = 1;
     }
-    //    if (car.x > canvas.width - car.carWidth) {
-    //        car.v = 0;
-    //        car.x = canvas.width - car.carWidth - 1;
-    //    }
+        if (car.x > canvas.width - car.carWidth) {
+            car.v = 0;
+            car.x = canvas.width - car.carWidth - 1;
+        }
     if (car.y > canvas.height - car.carHight) {
         car.v = 0;
         car.y = canvas.height - car.carHight - 1;
@@ -125,8 +142,12 @@ function turnRight() {
 }
 
 
-window.addEventListener('keydown', function (e) {
+window.addEventListener('keydown', keyIsDown,false );
 
+function keyIsDown(e){
+    if (e.keyCode == 32){
+        d = Math.round(performance.now());
+    }
 
     if (e.keyCode == 38) {
         speedUp();
@@ -141,7 +162,7 @@ window.addEventListener('keydown', function (e) {
     if (e.keyCode == 39) {
         turnRight();
     }
-}, false);
+}
 
 
 
@@ -174,14 +195,15 @@ function collisionDetection() {
                     counter++;
                     if (counter % 9 == 0) {
                         lap++
-                        console.log(lap);
+                     //   console.log(lap);
                     }
-                    // console.log(counter);
+                     //console.log(counter);
 
                 }
             }
             if (counter % 9 == 0) {
                 b.status = 1;
+
             }
         }
     }
