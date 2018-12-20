@@ -2,5 +2,7 @@ body{
     background-color : white;
 }
 canvas{
+background-color: blue;
 border: 2px solid black;
+
 }
