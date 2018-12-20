@@ -3,14 +3,13 @@ const ctx = canvas.getContext('2d');
 let raf;
 const running = false;
 const circle = new Path2D();
-const brickRowCount = 5;
-const brickColumnCount = 3;
+const brickColumn = 1;
+const brickRow = 5;
 const brickWidth = 75;
 const brickHeight = 20;
-const brickPadding = 10;
-const brickOffsetTop = 30;
-const brickOffsetLeft = 30;
-const gameOverNotify = document.querySelector('.game-over-notify');
+const brickPadding = 52;
+const brickOffsetTop = 50;
+const brickOffsetLeft = 20;
 let interval;
 let counter = 0;
 
@@ -107,18 +106,18 @@ canvas.addEventListener('mousemove', function (e) {
 
 
 const bricks = [];
-for (let c = 0; c < brickColumnCount; c++) {
-    bricks[c] = [];
-    for (let r = 0; r < brickRowCount; r++) {
-        bricks[c][r] = { x: 0, y: 0, status: 1 };
+for (let r = 0; r < brickRow; r++) {
+    bricks[r] = [];
+    for (let c = 0; c < brickColumn; c++) {
+        bricks[r][c] = { x: 0, y: 0, status: 1 };
     }
 }
 
 
 function collisionDetection() {
-    for (let c = 0; c < brickColumnCount; c++) {
-        for (let r = 0; r < brickRowCount; r++) {
-            let b = bricks[c][r];
+    for (let r = 0; r < brickRow; r++) {
+        for (let c = 0; c < brickColumn; c++) {
+            let b = bricks[r][c];
             if (b.status == 1) {
                 if (car.x > b.x && car.x < b.x + brickWidth && car.y > b.y && car.y < b.y + brickHeight) {
                     b.status = 0;
@@ -130,15 +129,23 @@ function collisionDetection() {
     }
 }
 
+// function drawBricks() {
+
+//     ctx.beginPath();
+//     ctx.rect(20, 40, brickWidth, brickHeight);
+//     ctx.fillStyle = "#0095DD";
+//     ctx.fill();
+//     ctx.closePath();
+// }
 
 function drawBricks() {
-    for (let c = 0; c < brickColumnCount; c++) {
-        for (let r = 0; r < brickRowCount; r++) {
-            if (bricks[c][r].status == 1) {
-                let brickX = (r * (brickWidth + brickPadding)) + brickOffsetLeft;
-                let brickY = (c * (brickHeight + brickPadding)) + brickOffsetTop;
-                bricks[c][r].x = brickX;
-                bricks[c][r].y = brickY;
+    for (let r = 0; r < brickRow; r++) {
+        for (let c = 0; c < brickColumn; c++) {
+            if (bricks[r][c].status == 1) {
+                let brickX = (c * (brickWidth + brickPadding)) + brickOffsetLeft;
+                let brickY = (r * (brickHeight + brickPadding)) + brickOffsetTop;
+                bricks[r][c].x = brickX;
+                bricks[r][c].y = brickY;
                 ctx.beginPath();
                 ctx.rect(brickX, brickY, brickWidth, brickHeight);
                 ctx.fillStyle = "#0095DD";
