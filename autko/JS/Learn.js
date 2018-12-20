@@ -4,15 +4,16 @@ let raf;
 const running = false;
 const circle = new Path2D();
 const brickColumn = 1;
-const brickRow = 5;
-const brickWidth = 20;
-const brickHeight = 20;
+const brickRow = 10;
+const brickWidth = 30;
+const brickHeight = 30;
 let interval;
 let counter = 0;
 
+
 let car = {
-    x: 0,
-    y: 0,
+    x: 264,
+    y: 140,
     radius: 0,
     v: 0,
     carHight: 50,
@@ -124,14 +125,14 @@ window.addEventListener('keydown', function (e) {
 
 
 
-canvas.addEventListener('mousemove', function (e) {
-    if (!running) {
-        clear();
-        car.x = e.clientX;
-        car.y = e.clientY;
-        car.draw();
-    }
-});
+// canvas.addEventListener('mousemove', function (e) {
+//     if (!running) {
+//         clear();
+//         car.x = e.clientX;
+//         car.y = e.clientY;
+//         car.draw();
+//     }
+// });
 
 
 const bricks = [];
@@ -175,30 +176,51 @@ function drawBricks() {
         for (let c = 0; c < brickColumn; c++) {
             if (bricks[r][c].status == 1) {
                 if (r == 0) {
-                    let brickX = 300;
-                    let brickY = 440;
-                    fillBricks(brickX, brickY, r, c);
-                }
-                if (r == 1) {
-                    let brickX = 200;
+                    let brickX = 133;
                     let brickY = 150;
                     fillBricks(brickX, brickY, r, c);
                 }
+                if (r == 1) {
+                    let brickX = 600;
+                    let brickY = 144;
+                    fillBricks(brickX, brickY, r, c);
+                }
                 if (r == 2) {
-                    let brickX = 200;
+                    let brickX = 1000;
                     let brickY = 250;
                     fillBricks(brickX, brickY, r, c);
                 }
                 if (r == 3) {
-                    let brickX = 120;
-                    let brickY = 50;
+                    let brickX = 1140;
+                    let brickY = 565;
                     fillBricks(brickX, brickY, r, c);
                 }
                 if (r == 4) {
-                    let brickX = 320;
-                    let brickY = 50;
+                    let brickX = 1000;
+                    let brickY = 704;
                     fillBricks(brickX, brickY, r, c);
                 }
+                if (r == 5) {
+                    let brickX = 722;
+                    let brickY = 600;
+                    fillBricks(brickX, brickY, r, c);
+                }
+                if (r == 6) {
+                    let brickX = 427;
+                    let brickY = 485;
+                    fillBricks(brickX, brickY, r, c);
+                }
+                if (r == 7) {
+                    let brickX = 256;
+                    let brickY = 685;
+                    fillBricks(brickX, brickY, r, c);
+                }
+                if (r == 8) {
+                    let brickX = 110;
+                    let brickY = 425;
+                    fillBricks(brickX, brickY, r, c);
+                }
+
             }
         }
     }
@@ -211,4 +233,3 @@ setInterval(car.draw, 10);
 car.draw();
 
 //document.body.addEventListener("load", car.draw(),true);
-

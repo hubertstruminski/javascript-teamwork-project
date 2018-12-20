@@ -2,8 +2,16 @@ body{
     background-color : white;
 }
 canvas{
+background-image: url("../JPG/background.jpg");
+background-size: 100% 100%;
+background-repeat: no-repeat;
 border: 2px solid black;
 cursor: none;
+}
+header{
+    width: 100%;
+    height: 15%;
+    background: red;
 }
 .game-over-notify {
     position: fixed;
